@@ -76,8 +76,7 @@ void loop() {
   Parameters:
     - String: "X,Y"
   Returns: 
-    - int X
-    - int Y
+    - New values of Struct result
 */
 Result Calculate_Message(String msg) {
 
