@@ -1,12 +1,17 @@
+## Code made by Leo Dahl
+## Latest Change was made 2025-02-07 23:25
+
 import pygame
+import time
+from SerialConnector import RunCommand ## Import SerialConnector
 
 pygame.init()
-win = pygame.display.set_mode((500, 500))
+win = pygame.display.set_mode((300, 300)) # Window size
 run = True
 
 Sim = 0
 Xmode = True
-x, y = 250, 250  # Initial position
+x, y = 0, 0  # Initial position
 vel = 5
 Coordinates = []  # Store saved points
 Sim = -1
@@ -23,7 +28,7 @@ while run:
                 Sim = Sim+1
                 print(Coordinates)  # Debugging output
                 Coordinates.append([x, y])  # Store coordinates
-                print("Saved coordinates:", x, y)
+                print("Saved coordinates:", x/3, y/3)
             if event.key == pygame.K_RETURN:
                 ## Start sending values
                 i = 0
@@ -32,21 +37,22 @@ while run:
                         ## Move to first point
                         X = coord[0]
                         Y = coord[1]
-                        output = str(x) + ",", str(y)
-                        print(output)
+                        Final = str(X)+","+str(Y)
+                        RunCommand(Final,X,Y)
                         i = i + 1
                     else:
-                        X = coord[0]
-                        Y = coord[1]
-                        PrevX = Coordinates[i-1][0]
+                        # Current Coordinates
+                        X = coord[0] ## X
+                        Y = coord[1] ## Y
+                        ## Get X and Y of past coordinate
+                        PrevX = Coordinates[i-1][0] 
                         PrevY = Coordinates[i-1][1]
-                        print("Scanning")
-                        print(i)
+                        ## Get difference between coordinates
+                        TotalX = X-PrevX 
+                        TotalY = Y-PrevY 
+                        Final = str((TotalX)/3)+","+str((TotalY)/3) ## Create string (X,Y)
+                        RunCommand(Final) # Run command with values given
                         i = i + 1
-                        print("To move from pos" + str(i-1) + "to pos" + str(i))
-                        print("X: ", X-PrevX)
-                        print("Y: ", Y-PrevY)
-
                     
 
 
