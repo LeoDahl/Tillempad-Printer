@@ -1,5 +1,7 @@
-## Code made by Leo Dahl
-## Latest Change was made 2025-02-07 23:25
+##  File: Simulator.py
+##  Author: Leo Dahl
+## Date: 2025-02-07
+##  Uses a grid via Pygame to mark coordinates, marked coordinates are later transferred to the printer to begin the drawing
 
 import pygame
 import time
