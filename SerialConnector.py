@@ -24,8 +24,14 @@ serialInst.port = "COM"+str(PortCom) ## Define port
 serialInst.open() ## Open port
 
 
-
-def RunCommand(command, Xtime, YTime):
+###
+## Takes command from string and writes it to serial port via utf-8
+## Parameters:
+##    - String - command
+## Returns: 
+##   void function
+##
+def RunCommand(command):
     print(command)
     serialInst.write(command.encode('utf-8'))
     if command == 'exit':
